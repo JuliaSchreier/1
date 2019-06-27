@@ -1,0 +1,111 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Survey
+{% endblock %}
+
+
+
+
+{% block content %}
+{% if player.full_information %}
+    <p>
+        Your current team strengh is at {{ team_endowment }}.
+
+        {% if probability %}
+        This mean that your probability to win is at {{ team_endowment }} %. 
+        {% else %}
+        This mean that your current payoff is {{ team_endowment_cent }} €. 
+        {% endif %}
+    </p>
+{% endif %}
+
+    <p>
+        Your assistant proposes to contract one of these two strikers. Please choose one player!
+    </p>
+
+{{ form.pair_answer.errors }}
+{{ form.pair_answer_mask.errors }} 
+{{ form.pair_answer_mean.errors }} 
+
+
+{% next_button %}
+
+<div class="hiddenradio">
+  <div class = "row" >
+    <label class="btn btn-secondary btn-info myselect">      
+      <div style ="position: relative;">
+  <input type="hidden" name="pair_answer_mask" id="pair_answer_mask" value = {{ mask1_1 }} />
+  <input type="hidden" name="pair_answer_mean" id="pair_answer_mean" value = {{ mask1_1_value }} >
+  <input type="radio" class="pair_answer" name="pair_answer" value= {{ img_pair1_1 }} >
+      <img src="{% static img_five_scarce1 %}" class = "playercard" style="width: 150px; height: 225px;"/>
+      <img src="{% static five_mask1 %}" class = "playerstats" style="width: 150px; height: 225px;"/>
+      </div>
+    </label>
+    <label>      
+      <div style ="position: relative;">
+  <input type="hidden" name="pair_answer_mask" id="pair_answer_mask" value = {{ mask1_2 }} />
+  <input type="hidden" name="pair_answer_mean" id="pair_answer_mean" value = {{ mask1_2_value }} >
+  <input type="radio" class="pair_answer" name="pair_answer" value= {{ img_pair1_2 }} >
+      <img src="{% static img_five_scarce2 %}" class = "playercard" style="width:150px; height:225px;">
+      <img src="{% static five_mask2 %}" class = "playerstats" style="width: 150px; height: 225px;"/>
+      </div>
+    </label>
+  </div>
+</div>     
+
+{% endblock %}
+
+{% block scripts %}
+<style>
+/* HIDE RADIO */
+.hiddenradio [type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+</style>
+
+<style>
+/* IMAGE STYLES */
+.hiddenradio [type=radio] + img {
+  cursor: pointer;
+}
+</style>
+
+<style>
+/* CHECKED STYLES */
+.hiddenradio [type=radio]:checked + img {
+  outline: 4px solid #f00;
+}
+</style>
+
+<style>
+.playercards{
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+</style>
+
+<style>
+.playercard{
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<style>
+.playerstats{
+    position: absolute;
+    bottom: -100px;
+    right: 0px;
+    width: 200px;
+    height: 200px;
+}
+</style>
+
+{% endblock %}
+

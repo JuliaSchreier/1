@@ -1,0 +1,29 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Survey
+{% endblock %}
+
+
+
+
+{% block content %}
+    <p>
+      {% if player.probability %}
+      {% if success == 1 %}
+      Congratulations! Your team has performed fabulously and won with 4 to 0 against your arch rival. The club president is very satisfied with your work and gives you the promised bonus of XX €!  
+      
+      {% else %}
+      Unfortunately, your team loses and does not deliver. Therefore, your club presidents will pay you only XX€!
+      {% endif %}
+
+      {% else %}
+      You receive {{ team_endowment_cent }} € as a reward for your excellent skills as football manager! 
+      {% endif %}
+    </p>
+
+{% next_button %}
+
+{% endblock %}
+

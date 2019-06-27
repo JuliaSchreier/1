@@ -1,0 +1,113 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Survey
+{% endblock %}
+
+
+
+
+{% block content %}
+
+    <p>
+        These are the players, you will start with! <br /> 
+        Your current team strength is {{ team_endowment }}. <br /> 
+
+        {% if probability %}
+        This mean that your probability to win is at {{ team_endowment }} %. 
+        {% else %}
+        This mean that your current payoff is {{ team_endowment_cent }} €. 
+        {% endif %}
+    </p>
+
+{{ form.errors }}
+
+
+
+<div class="hiddenradio">
+  <div class = "row" >
+    <label class="btn btn-secondary btn-info myselect">      
+      <div style ="position: relative;">
+      <img src="{% static endowment1 %}" class = "playercard" style="width: 150px; height: 225px;"/>
+      <img src="{% static endowment1mask %}" class = "playerstats" style="width: 150px; height: 225px;"/>
+      </div>
+    </label>
+    <label>      
+      <div style ="position: relative;">
+      <img src="{% static endowment2 %}" class = "playercard" style="width:150px; height:225px;">
+      <img src="{% static endowment2mask %}" class = "playerstats" style="width: 150px; height: 225px;"/>
+      </div>
+    </label>
+    <label>      
+      <div style ="position: relative;">
+      <img src="{% static endowment3 %}" class = "playercard" style="width:150px; height:225px;">
+      <img src="{% static endowment3mask %}" class = "playerstats" style="width: 150px; height: 225px;"/>
+      </div>
+    </label>
+    <label>      
+      <div style ="position: relative;">
+      <img src="{% static endowment4 %}" class = "playercard" style="width:150px; height:225px;">
+      <img src="{% static endowment4mask %}" class = "playerstats" style="width: 150px; height: 225px;"/>
+      </div>
+    </label>
+  </div>
+</div>
+
+<p>
+  {% next_button %}
+</p>
+{% endblock %}
+
+{% block scripts %}
+<style>
+/* HIDE RADIO */
+.hiddenradio [type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+</style>
+
+<style>
+/* IMAGE STYLES */
+.hiddenradio [type=radio] + img {
+  cursor: pointer;
+}
+</style>
+
+<style>
+/* CHECKED STYLES */
+.hiddenradio [type=radio]:checked + img {
+  outline: 4px solid #f00;
+}
+</style>
+
+<style>
+.row{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<style>
+.playercard{
+    position: relative;
+    top:0px;
+    left:0px;
+}
+</style>
+
+<style>
+.playerstats{
+    position: absolute;
+    top:0px;
+    left:0px;
+}
+</style>
+
+
+
+{% endblock %}

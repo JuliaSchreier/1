@@ -1,0 +1,132 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Survey
+{% endblock %}
+
+
+
+
+{% block content %}
+
+{% if player.full_information %}
+    <p>
+        Your current team strengh is at {{ team_endowment }}.
+
+        {% if probability %}
+        This mean that your probability to win is at {{ team_endowment }} %. 
+        {% else %}
+        This mean that your current payoff is {{ team_endowment_cent }} €. 
+        {% endif %}
+    </p>
+{% endif %}
+
+
+    <p>
+        Your assistant approaches you since you have to decide which players you want to hire for the central midfield and the wings. Please choose three players!
+    </p>
+
+{{ form.errors }}
+{% next_button %}
+
+
+<div class="hiddenradio">
+  <div class = "row form-check required" >
+    <label>      
+      <div style ="position: relative;">
+      <input type="hidden" name="five_mc_mean1" id="five_mc_mean1" value = {{ five_m_mask1value }} />
+      <input type="checkbox" class="five_scarce" name="five_mc" id="five1" value= {{ img_five_multiple1 }}>
+      <img src="{% static img_five_multiple1 %}" class = "playercard" style="width: 150px; height: 225px;"/>
+      <img src="{% static five_m_mask1 %}" class = "playerstats" style="width: 150px; height: 225px;"/>
+      </div>
+    </label>
+    <label>      
+      <div style ="position: relative;">
+      <input type="hidden" name="five_mc_mean2" id="five_mc_mean2" value = {{ five_m_mask2value }} />
+      <input type="checkbox" class="five_scarce" name="five_mc" id="five2" value= {{ img_five_multiple2 }}>
+      <img src="{% static img_five_multiple2 %}" class = "playercard" style="width:150px; height:225px;">
+      <img src="{% static five_m_mask2 %}" class = "playerstats" style="width: 150px; height: 225px;"/>
+      </div>
+    </label>
+    <label>      
+      <div style ="position: relative;">
+      <input type="hidden" name="five_mc_mean3" id="five_mc_mean3" value = {{ five_m_mask3value }} />
+      <input type="checkbox" class="five_scarce" name="five_mc" id="five3" value= {{ img_five_multiple3 }}>
+      <img src="{% static img_five_multiple3 %}" class = "playercard" style="width:150px; height:225px;">
+      <img src="{% static five_m_mask3 %}" class = "playerstats" style="width: 150px; height: 225px;"/>
+      </div>
+    </label>
+    <label>      
+      <div style ="position: relative;">
+      <input type="hidden" name="five_mc_mean4" id="five_mc_mean4" value = {{ five_m_mask4value }} />
+      <input type="checkbox" class="five_scarce" name="five_mc" id="five4" value= {{ img_five_multiple4 }}>
+      <img src="{% static img_five_multiple4 %}" class = "playercard" style="width:150px; height:225px;">
+      <img src="{% static five_m_mask4 %}" class = "playerstats" style="width: 150px; height: 225px;"/>
+      </div>
+    </label>
+    <label>
+      <div style ="position: relative;">
+      <input type="hidden" name="five_mc_mean5" id="five_mc_mean5" value = {{ five_m_mask5value }} />
+      <input type="checkbox" class="five_scarce" name="five_mc" id="five5" value= {{ img_five_multiple5 }} >
+      <img src="{% static img_five_multiple5 %}" class = "playercard" style="width:150px; height:225px;">      
+      <img src="{% static five_m_mask5 %}" class = "playerstats" style="width: 150px; height: 225px;"/>
+      </div>
+    </label>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<style>
+/* HIDE RADIO */
+.hiddenradio [type=checkbox] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+</style>
+
+<style>
+/* IMAGE STYLES */
+.hiddenradio [type=checkbox] + img {
+  cursor: pointer;
+}
+</style>
+
+<style>
+/* CHECKED STYLES */
+.hiddenradio [type=checkbox]:checked + img {
+  outline: 4px solid #f00;
+}
+</style>
+
+<style>
+.row{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<style>
+.playercard{
+    position: relative;
+    top:0px;
+    left:0px;
+}
+</style>
+
+<style>
+.playerstats{
+    position: absolute;
+    top:0px;
+    left:0px;
+}
+</style>
+
+
+
+{% endblock %}

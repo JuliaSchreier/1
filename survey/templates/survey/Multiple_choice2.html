@@ -1,0 +1,103 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Survey
+{% endblock %}
+
+
+
+
+{% block content %}
+
+    <p>
+        Please choose three of the following players!
+    </p>
+
+{% next_button %}
+
+{{ form.errors }}
+
+<div class="form-check required">
+  <label class="form-check-label">
+    <ul>
+        <table class="table"  id="id_testf">
+            <tr>
+              <td>
+                <label class="btn btn-secondary btn-info myselect" for="id_testf_0">
+                  <input style='display:none;' type="checkbox" name="testf" value={{ player.five_multiple1 }}
+                  maxlength="10000" id="id_testf_0" class="form-check-input otree-tools-checkbox form-control" />
+                  <img src="{% static img_five_multiple1 %}" alt="..." class="img-thumbnail image_select_thumbnail">
+                  <img src="{% static five_m_mask1 %}" class = "playerstats" style="width: 150px; height: 225px;"/>
+                </label>
+              </td>
+              <td>
+                <label class="btn btn-secondary btn-info myselect" for="id_testf_1">
+                  <input style='display:none;' type="checkbox" name="testf" value={{ player.five_multiple2 }}
+                  maxlength="10000" id="id_testf_1" class="form-check-input otree-tools-checkbox form-control" />
+                  <img src="{% static img_five_multiple2 %}" alt="..." class="img-thumbnail image_select_thumbnail">
+                  <img src="{% static five_m_mask2 %}" class = "playerstats" style="width: 150px; height: 225px;"/>
+                </label>
+              </td>
+              <td>
+                <label class="btn btn-secondary btn-info myselect" for="id_testf_2">
+                  <input style='display:none;' type="checkbox" name="testf" value={{ player.five_multiple3 }}
+                  maxlength="10000" id="id_testf_2" class="form-check-input otree-tools-checkbox form-control" />
+                  <img src="{% static img_five_multiple3 %}" alt="..." class="img-thumbnail image_select_thumbnail">
+                  <img src="{% static five_m_mask3 %}" class = "playerstats" style="width: 150px; height: 225px;"/>
+                </label>
+              </td>
+              <td>
+                <label class="btn btn-secondary btn-info myselect" for="id_testf_3">
+                  <input style='display:none;' type="checkbox" name="testf" value={{ player.five_multiple4 }}
+                  maxlength="10000" id="id_testf_3" class="form-check-input otree-tools-checkbox form-control" />
+                  <img src="{% static img_five_multiple4 %}" alt="..." class="img-thumbnail image_select_thumbnail">
+                  <img src="{% static five_m_mask4 %}" class = "playerstats" style="width: 150px; height: 225px;"/>
+                </label>
+              </td>
+              <td style ="position: relative;">
+                <label class="btn btn-secondary btn-info myselect" for="id_testf_4">
+                <div class="image_select_thumbnail img-thumbnail">
+                  <input style='display:none;' type="checkbox" name="testf" value={{ player.five_multiple5 }}
+                  maxlength="10000" id="id_testf_4" class="form-check-input otree-tools-checkbox form-control" />
+                  	<img src="{% static img_five_multiple5 %}" class = "playercard"  style="width:150px; height:225px;">
+                  	<img src="{% static five_m_mask5 %}" class = "playerstats" style="width:150px; height:225px;"/>
+                  </div>
+                </label>
+            </td>
+            </tr>
+        </table>
+    </ul>
+  </label>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $("input[name='testf']").change(function () {
+        var $label = $('label[for=' + this.id + ']');
+        $label.toggleClass('btn-danger');
+    });
+</script>
+{% endblock %}
+
+{% block style %}
+<style>
+.playercard{
+    position: relative;
+    top:0px;
+    left:0px;
+}
+</style>
+
+<style>
+.playerstats{
+    position: absolute;
+    top:0px;
+    left:0px;
+}
+</style>
+
+
+{% endblock %}

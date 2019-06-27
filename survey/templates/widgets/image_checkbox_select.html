@@ -1,0 +1,35 @@
+{% load otree %}
+{% load static %}
+
+{% with id=widget.attrs.id %}
+    <ul>
+        <table class="table {% if widget.attrs.class|default:False %} {{ widget.attrs.class }}{% endif %} " {% if id %} id="{{ id }}"{% endif %}>
+            <tr>
+                {% for group, options, index in widget.optgroups %}
+
+                    {% for option in options %}
+                        <td>
+                            {% include option.template_name with widget=option %}
+                        </td>
+                    {% endfor %}
+
+                {% endfor %}
+            </tr>
+        </table>
+    </ul>
+<script>
+    $("input[name='{{widget.name}}']").change(function () {
+        var $label = $('label[for=' + this.id + ']');
+        $label.toggleClass('btn-danger');
+    });
+</script>
+
+<style>
+    .image_select_thumbnail {
+        width: 100px;
+        height: 100%;
+        overflow: auto;
+    }
+
+</style>
+{% endwith %}

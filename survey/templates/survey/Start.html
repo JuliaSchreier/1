@@ -1,0 +1,44 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Survey
+{% endblock %}
+
+
+
+
+{% block content %}
+    <p>
+        Welcome to the Brilliant Football Academy, where you have to prove your expertise as a football manager.
+    </p>
+    <p>
+      You will be asked to decide which players you want to hire for your team. 
+    </p>
+
+    <p>
+      Our Scouts have rated each player in six of the many qualities footballers have: pace (PACE), shooting (SHOT), passing (PASS), dribbling (DRIB), defence (DEFD), and physical strength (PHYS). Each skill is important on the field, but different skills are decisive depending on the position. On the paper, the highest score is 100 for each skill. </br> 
+      
+      {% if player.probability %}
+      Your success as a football manager is measured in the first match of the season against your arch rival. If you manage to beat this team, you will receive a payoff of 1€. If you lose, you will receive 0.50€. </br>
+      The chances of beating your opponent team will depend on the average skill of your team meaning that if your team has an average skill level of 90, you will have a 90% chance of winning. Good luck! 
+
+      {% else %}
+      Your success as a football manager will depend on the average skill level of your team. If you assemble a team with an average skill level of 70 you will receive 0.70€ as a payoff for this survey. Good luck! 
+      {% endif %} 
+    </p>
+
+    <p>
+    {% if player.full_information %}
+    To guide your decision-making, our assistant coaches will keep you updated on the current average skill level of your current team. 
+
+    {% else %}
+    
+    Unfortunately, our scouts were only able to identify parts of the skills of the respective players. ?? signifies missing information on the true skill level of a player. You will be informed on the average skill level of your team, once you made all your decisions. 
+    {% endif %}  
+  </p>
+
+{% next_button %}
+
+{% endblock %}
+

@@ -1,0 +1,13 @@
+{% load otree %}
+{% load static %}
+
+{% if wrap_label %}
+    <label class="btn btn-secondary btn-info myselect" {% if widget.attrs.id %} for="{{ widget.attrs.id }}"{% endif %}>
+{% endif %}
+
+<input style='display:none;' type="{{ widget.type }}" name="{{ widget.name }}"{% if widget.value != None %}
+       value="{{ widget.value }}"{% endif %}{% include "django/forms/widgets/attrs.html" %} />
+<img src={% static widget.image %}             alt="..." class="img-thumbnail image_select_thumbnail">
+{% if wrap_label %}
+    </label>
+{% endif %}

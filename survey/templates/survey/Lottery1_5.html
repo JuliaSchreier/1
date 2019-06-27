@@ -1,0 +1,140 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Survey
+{% endblock %}
+
+
+
+
+{% block content %}
+
+{{ form.errors }}
+
+{% if player.lottery1_4 == 1 %}
+<input type="hidden" name="lottery1_player" id="lottery1_player" value = {{ lottery1_4_img }} />
+<input type="hidden" name="lottery1_mask" id="lottery1_mask" value = {{ lottery1_4_mask }} />
+<input type="hidden" name="lottery1_value" id="lottery1_value" value = {{ lottery1_4_value }} />
+{% else %}
+<input type="hidden" name="lottery1_player" id="lottery1_player" value = {{ player.lottery1_player }} />
+<input type="hidden" name="lottery1_mask" id="lottery1_mask" value = {{ player.lottery1_mask }} />
+<input type="hidden" name="lottery1_value" id="lottery1_value" value = {{ player.lottery1_value }} />
+{% endif %}
+
+
+{% if player.lottery1_4 == 1 or player.lottery1_value != None %}
+<p>
+  <b>How do you rate the player on a scale from 1 to 100?</b>
+</p>
+
+<div class="hiddenradio">
+    <label class="btn btn-secondary btn-info myselect">      
+      <div style ="position: relative;">
+    <img src="{% static lottery1_5_img %}" class="playercard" style="width: 150px; height: 225px;">
+    <img src="{% static lottery1_5_mask %}" class="playerstats" style="width: 150px; height: 225px;">
+      </div>
+    </label>
+</div>
+<p>
+<div class="form-group required">
+  <label class="col-form-label" for="id_rate_lottery1_5"></label>
+  <div class="controls  field-rate_lottery1_5">
+    <input type="number" name="rate_lottery1_5" required id="id_rate_lottery1_5" class="form-control" />
+  </div>      
+</div>
+</p>
+
+{% else %}
+
+{% if player.full_information %}
+    <p>
+        Your current team strengh is at {{ team_endowment }}.
+
+        {% if probability %}
+        This mean that your probability to win is at {{ team_endowment }} %. 
+        {% else %}
+        This mean that your current payoff is {{ team_endowment_cent }} €. 
+        {% endif %}    
+    </p>
+{% endif %}
+
+
+<p>
+  <b>Your scouts inform you that you exhausted all options and that you will have to add the following player to your team! </b>
+</p>
+
+<div class="hiddenradio">
+    <label class="btn btn-secondary btn-info myselect">      
+      <div style ="position: relative;">
+    <img src="{% static lottery1_5_img %}" class="playercard" style="width: 150px; height: 225px;">
+    <img src="{% static lottery1_5_mask %}" class="playerstats" style="width: 150px; height: 225px;">
+      </div>
+    </label>
+</div>
+<p>
+<div>
+  <input type="hidden" name="lottery1_5" id="lottery1_5" value="True" /> 
+  <input type="hidden" name="lottery1_player" id="lottery1_player" value = {{ lottery1_5_img }} />
+  <input type="hidden" name="lottery1_mask" id="lottery1_mask" value = {{ lottery1_5_mask }} />
+  <input type="hidden" name="lottery1_value" id="lottery1_value" value = {{ lottery1_5_value }} />
+</div>
+</p>
+
+{% next_button %}
+
+{% endif %}
+
+
+
+{% endblock %}
+
+{% block scripts %}
+<style>
+/* HIDE RADIO */
+.hiddenradio [type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+</style>
+
+<style>
+/* IMAGE STYLES */
+.hiddenradio [type=radio] + img {
+  cursor: pointer;
+}
+</style>
+
+<style>
+/* CHECKED STYLES */
+.hiddenradio [type=radio]:checked + img {
+  outline: 4px solid #f00;
+}
+</style>
+
+<style>
+.row{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<style>
+.playercard{
+    position: relative;
+    top:0px;
+    left:0px;
+}
+</style>
+
+<style>
+.playerstats{
+    position: absolute;
+    top:0px;
+    left:0px;
+}
+</style>
+{% endblock %}

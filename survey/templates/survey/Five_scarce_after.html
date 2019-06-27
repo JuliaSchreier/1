@@ -1,0 +1,143 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Survey
+{% endblock %}
+
+
+
+
+{% block content %}
+
+    <p>
+        Please choose one of the following players!
+    </p>
+
+{{ form.five_scarce.errors }}
+{% next_button %}
+
+
+<div class="hiddenradio">
+  <div class = "row" >
+    <label class="btn btn-secondary btn-info myselect">      
+      <div style ="position: relative;">
+      <input type="radio" class="five_scarce" name="five_scarce" value= {{ img_five_scarce1 }}>
+      <img src="{% static img_five_scarce1 %}" class = "playercard" style="width: 150px; height: 225px;"/>
+      <img src="{% static five_mask1 %}" class = "playerstats" style="width: 150px; height: 225px;"/>
+      </div>
+    </label>
+    <label>      
+      <div style ="position: relative;">
+      <input type="radio" class="five_scarce" name="five_scarce" value= {{ img_five_scarce2 }}>
+      <img src="{% static img_five_scarce2 %}" class = "playercard" style="width:150px; height:225px;">
+      <img src="{% static five_mask2 %}" class = "playerstats" style="width: 150px; height: 225px;"/>
+      </div>
+    </label>
+    <label>      
+      <div style ="position: relative;">
+      <input type="radio" class="five_scarce" name="five_scarce" value= {{ img_five_scarce3 }}>
+      <img src="{% static img_five_scarce3 %}" class = "playercard" style="width:150px; height:225px;">
+      <img src="{% static five_mask3 %}" class = "playerstats" style="width: 150px; height: 225px;"/>
+      </div>
+    </label>
+    <label>      
+      <div style ="position: relative;">
+      <input type="radio" class="five_scarce" name="five_scarce" value= {{ img_five_scarce4 }}>
+      <img src="{% static img_five_scarce4 %}" class = "playercard" style="width:150px; height:225px;">
+      <img src="{% static five_mask4 %}" class = "playerstats" style="width: 150px; height: 225px;"/>
+      </div>
+    </label>
+    <label>
+      <div style ="position: relative;">
+      <input type="radio" class="five_scarce" name="five_scarce" value= {{ img_five_scarce5 }} >
+      <img src="{% static img_five_scarce5 %}" class = "playercard" style="width:150px; height:225px;">      
+      <img src="{% static five_mask5 %}" class = "playerstats" style="width: 150px; height: 225px;"/>
+      </div>
+    </label>
+  </div>
+</div>
+
+
+{{ form.five_scarce_answer_mask.errors }}
+{{ form.five_scarce_answer_mean.errors }}
+{% if player.five_scarce == img_five_scarce1 %}
+<input type="hidden" name="five_scarce_answer_mask" id="five_scarce_answer_mask" value = {{ five_mask1 }} />
+<input type="hidden" name="five_scarce_answer_mean" id="five_scarce_answer_mean" value = {{ five_mask1_value }} >
+{% endif %}
+
+{% if player.five_scarce == img_five_scarce2 %}
+<input type="hidden" name="five_scarce_answer_mask" id="five_scarce_answer_mask" value = {{ five_mask2 }} />
+<input type="hidden" name="five_scarce_answer_mean" id="five_scarce_answer_mean" value = {{ five_mask2_value }} >
+{% endif %}
+
+{% if player.five_scarce == img_five_scarce3 %}
+<input type="hidden" name="five_scarce_answer_mask" id="five_scarce_answer_mask" value = {{ five_mask3 }} />
+<input type="hidden" name="five_scarce_answer_mean" id="five_scarce_answer_mean" value = {{ five_mask3_value }} >
+{% endif %}
+
+{% if player.five_scarce == img_five_scarce4 %}
+<input type="hidden" name="five_scarce_answer_mask" id="five_scarce_answer_mask" value = {{ five_mask4 }} />
+<input type="hidden" name="five_scarce_answer_mean" id="five_scarce_answer_mean" value = {{ five_mask4_value }} >
+{% endif %}
+
+{% if player.five_scarce == img_five_scarce5 %}
+<input type="hidden" name="five_scarce_answer_mask" id="five_scarce_answer_mask" value = {{ five_mask5 }} />
+<input type="hidden" name="five_scarce_answer_mean" id="five_scarce_answer_mean" value = {{ five_mask5_value }} >
+{% endif %}
+
+
+{% endblock %}
+
+{% block scripts %}
+<style>
+/* HIDE RADIO */
+.hiddenradio [type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+</style>
+
+<style>
+/* IMAGE STYLES */
+.hiddenradio [type=radio] + img {
+  cursor: pointer;
+}
+</style>
+
+<style>
+/* CHECKED STYLES */
+.hiddenradio [type=radio]:checked + img {
+  outline: 4px solid #f00;
+}
+</style>
+
+<style>
+.row{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<style>
+.playercard{
+    position: relative;
+    top:0px;
+    left:0px;
+}
+</style>
+
+<style>
+.playerstats{
+    position: absolute;
+    top:0px;
+    left:0px;
+}
+</style>
+
+
+
+{% endblock %}

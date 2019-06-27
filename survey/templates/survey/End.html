@@ -1,0 +1,29 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Survey
+{% endblock %}
+
+
+
+
+{% block content %}
+    <p>
+      Your team is now complete! 
+    </p>
+    <p>
+      Your team has an average skill level of {{ team_endowment }}.  
+      {% if player.probability %}
+      This means you have a {{ team_endowment }} % chance to win against your opponent team. Click on the next button to see how your team has done! 
+      
+      {% else %}
+      
+      This means that you will receive {{ team_endowment_cent }} €. Please click on the next button to receive your personal code.
+      {% endif %}
+    </p>
+
+{% next_button %}
+
+{% endblock %}
+
